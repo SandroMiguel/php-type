@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0 (2023-11-29)
+
+
+### Features
+
+* first commit ([5ada905](https://github.com/SandroMiguel/php-type/commit/5ada9053a17679d6d8b8166effd2f07ff773b808))
+
 ## [2.0.2](https://github.com/SandroMiguel/php-sceleto/compare/v2.0.1...v2.0.2) (2023-10-27)
 
 
