@@ -101,6 +101,47 @@ public function getSomeText(): string
 }
 ```
 
+Another example has a linter warning:
+
+```
+    /**
+     * Some method that has a warning.
+     *
+     * Warning example: [phpstan] Parameter #1 $property1 of class
+     *  PhpTypeTest\Entity constructor expects int, int|string given.
+     *
+     * @param array<string,int|string> $someArray The array.
+     */
+    public static function someMethodWithWarning(array $someArray): void
+    {
+        $someEntity = new Entity(
+            $someArray['someInt'],
+            $someArray['someString']
+        );
+        echo $someEntity->getProperty1() . "\n";
+        echo $someEntity->getProperty2() . "\n";
+    }
+```
+
+Address the previous warning with PhpType:
+
+```
+    /**
+     * Some method using PhpType for type checking.
+     *
+     * @param array<string,int|string> $someArray The array.
+     */
+    public static function someMethodWithPhpType(array $someArray): void
+    {
+        $someInt = Validator::validate('someInt', $someArray['someInt'])->getIntValue();
+        $someString = Validator::validate('someString', $someArray['someString'])->getStringValue();
+
+        $someEntity = new Entity($someInt, $someString);
+        echo $someEntity->getProperty1() . "\n";
+        echo $someEntity->getProperty2() . "\n";
+    }
+```
+
 ## Public Methods
 
 -   **`validate(string $fieldName, mixed $fieldValue): Validator`**
