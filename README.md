@@ -29,7 +29,7 @@ A PHP library designed for validating field values, ensuring data integrity, and
 You can install this library via Composer. Run the following command:
 
 ```bash
-composer require --dev sandromiguel/php-type
+composer require sandromiguel/php-type
 ```
 
 ## Usage
