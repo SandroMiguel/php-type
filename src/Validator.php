@@ -3,8 +3,6 @@
 /**
  * Validator
  *
- * PHP Version 8.0.5
- *
  * @package PhpType
  * @license MIT https://github.com/SandroMiguel/php-type/blob/master/LICENSE
  * @author Sandro Miguel Marques <sandromiguel@sandromiguel.com>
@@ -16,7 +14,6 @@ declare(strict_types=1);
 
 namespace PhpType;
 
-use PhpType\Exception\NullFieldException;
 use PhpType\Validator\IsIntValidator;
 use PhpType\Validator\IsStringValidator;
 use PhpType\Validator\NotNullValidator;

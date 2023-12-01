@@ -3,8 +3,6 @@
 /**
  * ValidatorTest
  *
- * PHP Version 8.0.5
- *
  * @package PhpType
  * @license MIT https://github.com/SandroMiguel/php-type/blob/master/LICENSE
  * @author Sandro Miguel Marques <sandromiguel@sandromiguel.com>
@@ -65,7 +63,7 @@ final class ValidatorTest extends TestCase
     /**
      * Test getIntValueOrNull() returns validated int for non-empty integer.
      */
-    public function testGetIntValueOrNullReturnsValidatedIntForNonEmptyInteger()
+    public function testGetIntValueOrNullReturnsValidatedIntForNonEmptyInteger(): void
     {
         $validatedInt = Validator::validate('fieldName', 123)
             ->getIntValueOrNull();
@@ -76,7 +74,7 @@ final class ValidatorTest extends TestCase
     /**
      * Test getIntValueOrNull() returns null for null field.
      */
-    public function testGetIntValueOrNullReturnsNullForNullField()
+    public function testGetIntValueOrNullReturnsNullForNullField(): void
     {
         $validatedInt = Validator::validate('fieldName', null)
             ->getIntValueOrNull();
@@ -87,7 +85,7 @@ final class ValidatorTest extends TestCase
     /**
      * Test getIntValueOrNull() throws exception for non-integer field.
      */
-    public function testGetIntValueOrNullThrowsExceptionForNonIntegerField()
+    public function testGetIntValueOrNullThrowsExceptionForNonIntegerField(): void
     {
         $this->expectException(NonIntegerFieldException::class);
 
@@ -122,7 +120,7 @@ final class ValidatorTest extends TestCase
     /**
      * Test getStringValueOrNull() returns validated string for non-empty string.
      */
-    public function testGetStringValueOrNullReturnsValidatedStringForNonEmptyString()
+    public function testGetStringValueOrNullReturnsValidatedStringForNonEmptyString(): void
     {
         $validatedString = Validator::validate('fieldName', 'stringValue')
             ->getStringValueOrNull();

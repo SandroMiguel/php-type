@@ -3,8 +3,6 @@
 /**
  * NullFieldException
  *
- * PHP Version 8.0.5
- *
  * @package PhpType
  * @license MIT https://github.com/SandroMiguel/php-type/blob/master/LICENSE
  * @author Sandro Miguel Marques <sandromiguel@sandromiguel.com>
