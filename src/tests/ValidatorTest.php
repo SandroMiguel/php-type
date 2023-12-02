@@ -14,10 +14,6 @@ declare(strict_types=1);
 
 namespace PhpType\Tests;
 
-use PhpType\Exception\EmptyStringFieldException;
-use PhpType\Exception\NonIntegerFieldException;
-use PhpType\Exception\NonStringFieldException;
-use PhpType\Exception\NullFieldException;
 use PhpType\Validator;
 use PHPUnit\Framework\TestCase;
 
@@ -43,7 +39,9 @@ final class ValidatorTest extends TestCase
      */
     public function testGetIntValueThrowsExceptionForNonIntegerField(): void
     {
-        $this->expectException(NonIntegerFieldException::class);
+        $this->expectException(
+            \PhpType\Exception\NonIntegerFieldException::class
+        );
 
         Validator::validate('fieldName', 'stringValue')
             ->getIntValue();
@@ -54,7 +52,7 @@ final class ValidatorTest extends TestCase
      */
     public function testGetIntValueThrowsExceptionForNullField(): void
     {
-        $this->expectException(NullFieldException::class);
+        $this->expectException(\PhpType\Exception\NullFieldException::class);
 
         Validator::validate('fieldName', null)
             ->getIntValue();
@@ -87,7 +85,9 @@ final class ValidatorTest extends TestCase
      */
     public function testGetIntValueOrNullThrowsExceptionForNonIntegerField(): void
     {
-        $this->expectException(NonIntegerFieldException::class);
+        $this->expectException(
+            \PhpType\Exception\NonIntegerFieldException::class
+        );
 
         Validator::validate('fieldName', 'stringValue')
             ->getIntValueOrNull();
@@ -111,14 +111,17 @@ final class ValidatorTest extends TestCase
      */
     public function testStringNotEmptyThrowsExceptionForEmptyString(): void
     {
-        $this->expectException(EmptyStringFieldException::class);
+        $this->expectException(
+            \PhpType\Exception\EmptyStringFieldException::class
+        );
 
         Validator::validate('fieldName', '')
             ->stringNotEmpty();
     }
 
     /**
-     * Test getStringValueOrNull() returns validated string for non-empty string.
+     * Test getStringValueOrNull() returns validated string for
+     *  non-empty string.
      */
     public function testGetStringValueOrNullReturnsValidatedStringForNonEmptyString(): void
     {
@@ -144,7 +147,9 @@ final class ValidatorTest extends TestCase
      */
     public function testGetStringValueOrNullThrowsExceptionForNonStringField(): void
     {
-        $this->expectException(NonStringFieldException::class);
+        $this->expectException(
+            \PhpType\Exception\NonStringFieldException::class
+        );
 
         Validator::validate('fieldName', 123)
             ->getStringValueOrNull();
@@ -168,7 +173,7 @@ final class ValidatorTest extends TestCase
      */
     public function testGetValueThrowsExceptionForNullField(): void
     {
-        $this->expectException(NullFieldException::class);
+        $this->expectException(\PhpType\Exception\NullFieldException::class);
 
         Validator::validate('fieldName', null)
             ->getValue();
@@ -192,7 +197,9 @@ final class ValidatorTest extends TestCase
      */
     public function testGetStringValueThrowsExceptionForNonStringField(): void
     {
-        $this->expectException(NonStringFieldException::class);
+        $this->expectException(
+            \PhpType\Exception\NonStringFieldException::class
+        );
 
         Validator::validate('fieldName', 123)
             ->getStringValue();

@@ -2,7 +2,7 @@
 <phpunit bootstrap="vendor/autoload.php" colors="true">
     <coverage>
         <include>
-            <directory>./src</directory>
+            <directory>./src/tests</directory>
         </include>
     </coverage>
     <testsuites>
