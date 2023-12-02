@@ -35,53 +35,49 @@ composer require sandromiguel/php-type
 
 ## Usage
 
-Use the `Validator` class to effortlessly validate PHP field values, preventing linters from throwing alerts. Currently, this proof-of-concept version supports validation for integer and string types.
+This library excels in validating arrays, ensuring that data adheres to specified types and contributing to a more robust and reliable codebase. Consider the following scenarios where PhpType proves beneficial:
+
+#### Scenario 1: Method Input Validation
+
+When accepting arrays as method parameters, it's crucial to validate the input to guarantee that the data aligns with the expected types. Using PhpType in such scenarios enhances code reliability and prevents unexpected type mismatches.
+
+Example thats shows a linter warning:
 
 ```
-// Example usage for validating an integer field
-use PhpType\Validator;
-
-$fieldName = 'exampleField';
-$fieldValue = 42;
-
-Validator::validate($fieldName, $fieldValue)->getIntValue();
-
-// Example usage for validating a string field
-$fieldName = 'exampleStringField';
-$fieldValue = 'Hello, World!';
-
-Validator::validate($fieldName, $fieldValue)->getStringValue();
+    /**
+     * @param array<string,int|string> $someArray The array.
+     */
+    public static function someMethodWithWarning(array $someArray): void
+    {
+        $someEntity = new Entity(
+            $someArray['someInt'],
+            $someArray['someString']
+        );
+        echo $someEntity->getProperty1() . "\n";
+        echo $someEntity->getProperty2() . "\n";
+    }
 ```
 
-### Array values validation:
-
-This library is especially useful for validating values within an array, particularly when they need to be injected into functions with defined type hints or when ensuring the correct return type for a function.
-
-Example usage for ensuring a string is passed as a parameter.
+Address the previous warning with PhpType:
 
 ```
-function acceptSomeString(string $someString)
-{
-  // ... algum código
-}
+    /**
+     * @param array<string,int|string> $someArray The array.
+     */
+    public static function someMethodWithPhpType(array $someArray): void
+    {
+        $someInt = Validator::validate('someInt', $someArray['someInt'])->getIntValue();
+        $someString = Validator::validate('someString', $someArray['someString'])->getStringValue();
 
-// Chamada à função - não garante o tipo
-function badFunction()
-{
-  $someVar = acceptSomeString($this->someArray['someKey']);
-  // ... algum código
-}
-
-// Chamada à função - garante o tipo
-function goodFunction()
-{
-  $someKeyValue = Validator::validate('someKey', $this->someArray['someKey'])->getStringValue();
-  $someVar = acceptSomeString($someKeyValue);
-  // ... algum código
-}
+        $someEntity = new Entity($someInt, $someString);
+        echo $someEntity->getProperty1() . "\n";
+        echo $someEntity->getProperty2() . "\n";
+    }
 ```
 
-Example usage for ensuring a string return type:
+#### Scenario 2: Method Output Validation
+
+In situations where it is necessary to return values from an array, such as strings, PhpType ensures that the returned values adhere to the expected types.
 
 ```
 use PhpType\Validator;
@@ -100,49 +96,6 @@ public function getSomeText(): string
         ->stringNotEmpty()
         ->getStringValue();
 }
-```
-
-Another example has a linter warning:
-
-```
-    /**
-     * Some method that has a warning.
-     *
-     * Warning example: [phpstan] Parameter #1 $property1 of class
-     *  PhpTypeTest\Entity constructor expects int, int|string given.
-     *
-     * @param array<string,int|string> $someArray The array.
-     */
-    public static function someMethodWithWarning(array $someArray): void
-    {
-        $someEntity = new Entity(
-            $someArray['someInt'],
-            $someArray['someString']
-        );
-        echo $someEntity->getProperty1() . "\n";
-        echo $someEntity->getProperty2() . "\n";
-    }
-```
-
-Address the previous warning with PhpType:
-
-PhpType proves useful in validating method input and output. By incorporating PhpType in your code, you can ensure that the data passed to your methods complies with the expected types, contributing to a more robust and reliable codebase.
-
-```
-    /**
-     * Some method using PhpType for type checking.
-     *
-     * @param array<string,int|string> $someArray The array.
-     */
-    public static function someMethodWithPhpType(array $someArray): void
-    {
-        $someInt = Validator::validate('someInt', $someArray['someInt'])->getIntValue();
-        $someString = Validator::validate('someString', $someArray['someString'])->getStringValue();
-
-        $someEntity = new Entity($someInt, $someString);
-        echo $someEntity->getProperty1() . "\n";
-        echo $someEntity->getProperty2() . "\n";
-    }
 ```
 
 ## Public Methods
