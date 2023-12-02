@@ -2,7 +2,7 @@
 
 [![license](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](LICENSE)
 
-A PHP library designed for validating field values, ensuring data integrity, and suppressing linter alerts.
+PhpType is a PHP library meticulously crafted for validating field values, safeguarding data integrity, and quelling linter alerts. It goes beyond mere linting concerns by seamlessly incorporating runtime checks. These runtime checks act as a robust validation layer during code execution, ensuring that your data aligns with the specified types. This dual approach not only suppresses linter warnings but also fortifies your application's integrity, instilling an extra level of confidence in your data handling processes.
 
 ## Features
 
@@ -125,6 +125,8 @@ Another example has a linter warning:
 ```
 
 Address the previous warning with PhpType:
+
+PhpType proves useful in validating method input and output. By incorporating PhpType in your code, you can ensure that the data passed to your methods complies with the expected types, contributing to a more robust and reliable codebase.
 
 ```
     /**
