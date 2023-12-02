@@ -20,6 +20,7 @@ A PHP library designed for validating field values, ensuring data integrity, and
 -   [Installation](#installation)
 -   [Usage](#usage)
 -   [Public Methods](#public-methods)
+-   [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq)
 -   [Credits](#credits)
 -   [Contributing](#contributing)
 -   [License](#license)
@@ -164,6 +165,24 @@ Address the previous warning with PhpType:
 
 -   **`getValue(): mixed`**
     Get the mixed value.
+
+## Frequently Asked Questions (FAQ)
+
+### Q: Why use PhpType when linters like Psalm or PHPStan already exist?
+
+**A:** While linters are powerful tools, PhpType serves as a lightweight solution specifically designed to handle scenarios where linter warnings arise due to type mismatches in array structures. It provides a simple and easy-to-use interface, offering an alternative approach to address such issues.
+
+### Q: Can I use PhpType in production code?
+
+**A:** Yes, PhpType is intended for use in production code. It is perfectly suitable for production use without any issues.
+
+### Q: Why not use deserialization libraries like symfony/serializer for handling array data?
+
+**A:** Deserialization libraries like symfony/serializer are excellent for handling complex data structures by converting them into objects. PhpType is more suited for scenarios where direct manipulation of arrays is necessary, such as dealing with legacy code or situations where immediate refactoring is not feasible.
+
+### Q: How do I handle linter warnings with PhpType?
+
+**A:** PhpType helps eliminate linter warnings by providing a straightforward method for validating array values, ensuring type correctness, and suppressing alerts from linters like PHPStan. Check the documentation for examples and usage details.
 
 ## Credits
 
