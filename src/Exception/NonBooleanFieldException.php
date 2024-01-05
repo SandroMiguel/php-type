@@ -1,7 +1,7 @@
 <?php
 
 /**
- * NullFieldException
+ * NonBooleanFieldException
  *
  * @package PhpType
  * @license MIT https://github.com/SandroMiguel/php-type/blob/master/LICENSE
@@ -14,17 +14,17 @@ declare(strict_types=1);
 namespace PhpType\Exception;
 
 /**
- * Exception thrown for null field.
+ * Exception thrown for non-boolean field.
  */
-final class NullFieldException extends \InvalidArgumentException
+final class NonBooleanFieldException extends \InvalidArgumentException
 {
     /**
      * Constructor.
      *
-     * @param string $fieldName Name of the field that cannot be null.
+     * @param string $fieldName Name of the field that must be a boolean.
      */
     public function __construct(string $fieldName)
     {
-        parent::__construct(\sprintf('"%s" cannot be null.', $fieldName));
+        parent::__construct(\sprintf('"%s" must be a boolean.', $fieldName));
     }
 }

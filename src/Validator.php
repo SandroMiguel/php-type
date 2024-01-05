@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace PhpType;
 
+use PhpType\Validator\IsBoolValidator;
 use PhpType\Validator\IsIntValidator;
 use PhpType\Validator\IsStringValidator;
 use PhpType\Validator\NotNullValidator;
@@ -30,11 +31,17 @@ final class Validator
     /** @var mixed The value of the field as a mixed type. */
     private mixed $fieldValue;
 
+    /** @var bool The value of the field as a boolean. */
+    private $boolValue;
+
     /** @var string The value of the field as a string. */
     private $stringValue;
 
     /** @var int The value of the field as an integer. */
     private $intValue;
+
+    /** @var bool|null The value of the field as a boolean or null. */
+    private $boolValueOrNull;
 
     /** @var string|null The value of the field as a string or null. */
     private $stringValueOrNull;
@@ -52,10 +59,12 @@ final class Validator
     {
         $this->fieldName = $fieldName;
         $this->fieldValue = $fieldValue;
-        $this->stringValue = $fieldValue;
+        $this->boolValue = $fieldValue;
         $this->intValue = $fieldValue;
-        $this->stringValueOrNull = $fieldValue;
+        $this->stringValue = $fieldValue;
+        $this->boolValueOrNull = $fieldValue;
         $this->intValueOrNull = $fieldValue;
+        $this->stringValueOrNull = $fieldValue;
     }
 
     /**
@@ -85,6 +94,33 @@ final class Validator
         $validator->validate();
 
         return $this;
+    }
+
+    /**
+     * Get the boolean value.
+     *
+     * @return bool The boolean value.
+     */
+    public function getBoolValue(): bool
+    {
+        $this->validateNotNull();
+        $this->validateIsBool();
+
+        return $this->boolValue;
+    }
+
+    /**
+     * Get the boolean value or null.
+     *
+     * @return bool|null The boolean value or null.
+     */
+    public function getBoolValueOrNull(): ?bool
+    {
+        if ($this->fieldValue !== null) {
+            $this->validateIsBool();
+        }
+
+        return $this->boolValueOrNull;
     }
 
     /**
@@ -151,6 +187,19 @@ final class Validator
         $this->validateNotNull();
 
         return $this->fieldValue;
+    }
+
+    /**
+     * Check if the field is a boolean.
+     *
+     * @return Validator The Validator instance for chaining.
+     */
+    private function validateIsBool(): self
+    {
+        $validator = new IsBoolValidator($this->fieldName, $this->fieldValue);
+        $validator->validate();
+
+        return $this;
     }
 
     /**

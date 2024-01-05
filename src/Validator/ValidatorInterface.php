@@ -6,7 +6,6 @@
  * @package PhpType
  * @license MIT https://github.com/SandroMiguel/php-type/blob/master/LICENSE
  * @author Sandro Miguel Marques <sandromiguel@sandromiguel.com>
- * @copyright 2023 Sandro
  * @link https://github.com/SandroMiguel/php-type
  */
 

@@ -94,6 +94,70 @@ final class ValidatorTest extends TestCase
     }
 
     /**
+     * Test if the isBool() method of the Validator class
+     * correctly validates a boolean.
+     */
+    public function testIsBoolValidatesBoolean(): void
+    {
+        $this->expectNotToPerformAssertions();
+
+        Validator::validate('fieldName', true)
+            ->getBoolValue();
+    }
+
+    /**
+     * Test if the isBool() method of the Validator class
+     * correctly throws an exception for a non-boolean value.
+     */
+    public function testIsBoolThrowsExceptionForNonBooleanValue(): void
+    {
+        $this->expectException(
+            \PhpType\Exception\NonBooleanFieldException::class
+        );
+
+        Validator::validate('fieldName', 'nonBooleanValue')
+            ->getBoolValue();
+    }
+
+    /**
+     * Test if the isBoolOrNull() method of the Validator class
+     * returns validated boolean for a boolean value.
+     */
+    public function testIsBoolOrNullReturnsValidatedBoolForBooleanValue(): void
+    {
+        $validatedBool = Validator::validate('fieldName', true)
+            ->getBoolValueOrNull();
+
+        $this->assertTrue($validatedBool);
+    }
+
+    /**
+     * Test if the isBoolOrNull() method of the Validator class
+     * returns null for a null field.
+     */
+    public function testIsBoolOrNullReturnsNullForNullField(): void
+    {
+        $validatedBool = Validator::validate('fieldName', null)
+            ->getBoolValueOrNull();
+
+        $this->assertNull($validatedBool);
+    }
+
+    /**
+     * Test if the isBoolOrNull() method of the Validator class
+     * throws an exception for a non-boolean value.
+     */
+    public function testIsBoolOrNullThrowsExceptionForNonBooleanValue(): void
+    {
+        $this->expectException(
+            \PhpType\Exception\NonBooleanFieldException::class
+        );
+
+        Validator::validate('fieldName', 'nonBooleanValue')
+            ->getBoolValueOrNull();
+    }
+
+    /**
      * Test if the stringNotEmpty() method of the Validator class
      * correctly validates a non-empty string.
      */
