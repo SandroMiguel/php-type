@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/SandroMiguel/php-type/compare/v1.0.0...v1.1.0) (2024-01-05)
+
+
+### Features
+
+* add support for booleans ([4a418b6](https://github.com/SandroMiguel/php-type/commit/4a418b6a35e25049089498365aa1e491401a060d))
+
 ## 1.0.0 (2023-11-29)
 
 
