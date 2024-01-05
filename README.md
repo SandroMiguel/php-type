@@ -6,7 +6,7 @@ PhpType is a PHP library meticulously crafted for validating field values, safeg
 
 ## Features
 
--   Supports the `int` and `string` data types.
+-   Supports the `bool`, `int` and `string` data types.
 -   Provides a simple and easy-to-use interface.
 -   Is lightweight and efficient.
 -   Is well-documented.
@@ -105,6 +105,12 @@ public function getSomeText(): string
 
 -   **`stringNotEmpty(): Validator`**
     Check if the string is not empty.
+
+-   **`getBoolValue(): bool`**
+    Get the boolean value.
+
+-   **`getBoolValueOrNull(): ?bool`**
+    Get the boolean value or null.
 
 -   **`getIntValue(): int`**
     Get the integer value.
